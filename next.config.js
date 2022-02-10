@@ -1,5 +1,9 @@
 module.exports = {
     images: {
-        domains: ["www.google.com"],
+        domains: [
+            "links.papareact.com",
+            "platform-lookaside.fbsbx.com",
+            "firebasestorage.googleapis.com",
+        ]
     },
 }
