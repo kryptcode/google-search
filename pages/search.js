@@ -2,7 +2,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Header from "../components/Header";
 import SearchResults from "../components/SearchResults";
-import response from "../response";
 
 const Search = ({ results }) => {
     const router = useRouter()
@@ -23,12 +22,11 @@ const Search = ({ results }) => {
 export default Search;
 
 export async function getServerSideProps(context) {
-    const useDummyData = false
     const startIndex = context.query.start || "0"
 
     const { term } = context.query
 
-    const data = useDummyData ? response : await fetch (`https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${term}&start=${startIndex}`).then(res => res.json())
+    const data = await fetch (`https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${term}&start=${startIndex}`).then(res => res.json())
 
     return {
         props: {
